@@ -75,12 +75,21 @@
 </div>
 
 <script>
-    fetch('https://raw.githubusercontent.com/vexinity99/csshelpassets/refs/heads/main/password.txt').then(response => response.text()).then(text => { const correctPassword = text.trim(); });
+    let correctPassword = ''; // Declare a global variable to store the correct password
+
+    // Fetch the password from the GitHub raw file
+    fetch('https://raw.githubusercontent.com/vexinity99/csshelpassets/refs/heads/main/password.txt')
+        .then(response => response.text())
+        .then(text => {
+            correctPassword = text.trim(); // Set the correctPassword once fetched
+        });
+
     const passwordInput = document.getElementById('password-input');
     const submitPasswordButton = document.getElementById('submit-password');
     const passwordContainer = document.getElementById('password-container');
     const embedScreen = document.getElementById('embed-screen');
-    
+
+    // Add event listener to check the password when the button is clicked
     submitPasswordButton.addEventListener('click', () => {
         if (passwordInput.value === correctPassword) {
             passwordContainer.style.display = 'none';
