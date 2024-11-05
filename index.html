@@ -63,7 +63,7 @@
 <body>
 
 <div id="password-container">
-    <h2>michael N is the owner of this website.. if you are from GLMS, GET OUTTT</h2>
+    <h2 id="title">Loading...</h2>
     <input type="password" id="password-input" placeholder="Enter your password..." />
     <button id="submit-password">Submit</button>
 </div>
@@ -82,6 +82,13 @@
         .then(response => response.text())
         .then(text => {
             correctPassword = text.trim(); // Set the correctPassword once fetched
+        });
+
+    // Fetch the title from the GitHub raw file
+    fetch('https://raw.githubusercontent.com/vexinity99/csshelpassets/refs/heads/main/title.txt')
+        .then(response => response.text())
+        .then(titleText => {
+            document.getElementById('title').innerText = titleText.trim(); // Set the title
         });
 
     const passwordInput = document.getElementById('password-input');
